@@ -34,7 +34,7 @@ func TestDiffWithDuplicates(t *testing.T) {
 	}
 }
 
-func TestDifference(t *testing.T) {
+func TestDiff(t *testing.T) {
 	type args[T constraints.Ordered] struct {
 		a []T
 		b []T
