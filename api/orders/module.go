@@ -15,28 +15,16 @@ type OrderModule struct {
 	Actions    order_actions.OrderActionsContract
 }
 
-func NewOrderModule(
-	actions order_actions.OrderActionsContract,
-	controller order_controllers.OrderControllerContract,
-	routes routers.RouterContract,
-) *OrderModule {
-	return &OrderModule{
-		Actions:    actions,
-		Controller: controller,
-		Routes:     routes,
-	}
-}
-
 func SetupDefault(engine *gin.Engine, db *gorm.DB) {
 	orderActions := order_actions.NewOrderActions(db)
 	orderController := order_controllers.NewOrdersController(db, orderActions)
 	orderRoutes := order_routes.NewOrderRoutes(engine, orderController)
 
-	module := NewOrderModule(
-		orderActions,
-		orderController,
-		orderRoutes,
-	)
+	module := OrderModule{
+		Routes:     orderRoutes,
+		Controller: orderController,
+		Actions:    orderActions,
+	}
 
 	module.Routes.Setup()
 }
