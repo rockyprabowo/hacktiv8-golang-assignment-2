@@ -2,9 +2,9 @@ package models
 
 type Item struct {
 	ID          uint   `json:"lineItemId" gorm:"primaryKey;column:item_id"`
-	ItemCode    string `json:"itemCode" binding:"required"`
-	Description string `json:"description" binding:"required"`
-	Quantity    uint   `json:"quantity" binding:"required"`
+	ItemCode    string `form:"itemCode" json:"itemCode" binding:"required"`
+	Description string `form:"description" json:"description" binding:"required"`
+	Quantity    uint   `form:"quantity" json:"quantity" binding:"required"`
 	OrderID     uint   `json:"-"`
 	Order       Order  `json:"-"`
 }
