@@ -20,6 +20,6 @@ type OrderController struct {
 	Database *gorm.DB
 }
 
-func NewOrdersController(db *gorm.DB, actions order_actions.OrderActionsContract) *OrderController {
+func NewOrdersController(db *gorm.DB, actions order_actions.OrderActionsContract) OrderControllerContract {
 	return &OrderController{Database: db, Actions: actions}
 }
