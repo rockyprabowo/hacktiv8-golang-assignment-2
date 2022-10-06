@@ -1,13 +1,19 @@
 package main
 
 import (
+	"github.com/joho/godotenv"
 	"log"
+
 	"rockyprabowo/assignment-2/api/orders"
 	"rockyprabowo/assignment-2/database"
 	"rockyprabowo/assignment-2/routers"
 )
 
 func main() {
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	router := routers.NewDefaultRouter()
 	db := database.Init()
 
