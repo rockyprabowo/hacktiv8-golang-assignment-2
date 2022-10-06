@@ -8,6 +8,7 @@ import (
 
 func (actions OrderActions) UpdateOrder(order, updatePayload *Order) error {
 	originalOrderItemIDs := slices.Map(order.Items, ItemMapID)
+	order.CustomerName = updatePayload.CustomerName
 	order.Items = updatePayload.Items
 
 	err := actions.Database.
