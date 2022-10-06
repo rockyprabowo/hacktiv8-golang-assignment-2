@@ -4,7 +4,7 @@ import "time"
 
 type Order struct {
 	ID           uint      `json:"orderId" gorm:"primaryKey;column:order_id"`
-	CustomerName string    `json:"customerName"`
+	CustomerName string    `json:"customerName" binding:"required"`
 	OrderedAt    time.Time `json:"orderedAt" gorm:"autoCreateTime"`
-	Items        []Item    `json:"items" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	Items        []Item    `json:"items" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" binding:"required"`
 }
