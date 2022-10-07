@@ -21,7 +21,7 @@ func (actions OrderActions) Prune() (int64, error) {
 	}
 	actions.Database.Exec("ALTER SEQUENCE items_item_id_seq RESTART")
 	actions.Database.Exec("ALTER SEQUENCE orders_order_id_seq RESTART")
-	actions.Database.Exec("DROP TABLE orders")
+	actions.Database.Exec("DROP TABLE orders CASCADE")
 	err = actions.Database.AutoMigrate(models...)
 	return affectedRows, nil
 }
