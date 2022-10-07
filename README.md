@@ -12,8 +12,17 @@ This project is a REST API back end application made with Gin HTTP web framework
 
 ## Endpoints
 
-_TODO: Will added after OpenAPI docs are finished_
+* `GET    /orders` Fetch all orders
+* `POST   /orders` Create order
+* `GET    /orders/:id` Fetch an order
+* `PUT    /orders/:id` Update an order
+* `DELETE /orders/:id` Delete an order
+* `POST   /orders/__prune__` Undocumented: Prune the database tables
+* `GET    /swagger/*any` Swagger/OpenAPI 2.0 Documentations
+
 
 ## Changelog
 
-_TODO: Will add one after v1 is ready_
+### 1.0
+
+Initial release

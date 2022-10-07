@@ -5,6 +5,8 @@ import (
 	"rockyprabowo/assignment-2/helpers/set"
 )
 
+// SliceLongShort
+// Returns a longer list at the first return value and shorter one on the second return value.
 func SliceLongShort[T any](a, b []T) (long, short []T) {
 	if len(b) > len(a) {
 		return b, a
@@ -12,6 +14,8 @@ func SliceLongShort[T any](a, b []T) (long, short []T) {
 	return a, b
 }
 
+// Diff
+// Returns the difference of two slice with a type of T without the duplicates.
 func Diff[T constraints.Ordered](a, b []T) (diff []T) {
 	long, short := SliceLongShort(a, b)
 
@@ -30,6 +34,8 @@ func Diff[T constraints.Ordered](a, b []T) (diff []T) {
 	return
 }
 
+// DiffWithDuplicates
+// Returns the difference of two slice with a type of T including the duplicates.
 func DiffWithDuplicates[T constraints.Ordered](a, b []T) (diff []T) {
 	long, short := SliceLongShort(a, b)
 	longIter, shortIter := 0, 0
