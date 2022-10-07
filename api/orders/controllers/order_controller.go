@@ -3,7 +3,7 @@ package order_controllers
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"rockyprabowo/assignment-2/api/orders/actions"
+	"rocky.my.id/git/h8-assignment-2/api/orders/actions"
 )
 
 // OrderControllerContract defines a contract for handling requests for order

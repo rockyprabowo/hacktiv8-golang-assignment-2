@@ -3,7 +3,7 @@ package order_controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"rockyprabowo/assignment-2/api/orders/responses"
+	"rocky.my.id/git/h8-assignment-2/api/orders/responses"
 )
 
 // Delete godoc

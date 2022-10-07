@@ -3,10 +3,10 @@ package order_module
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"rockyprabowo/assignment-2/api/orders/actions"
-	"rockyprabowo/assignment-2/api/orders/controllers"
-	"rockyprabowo/assignment-2/api/orders/routes"
-	"rockyprabowo/assignment-2/routers"
+	"rocky.my.id/git/h8-assignment-2/api/orders/actions"
+	"rocky.my.id/git/h8-assignment-2/api/orders/controllers"
+	"rocky.my.id/git/h8-assignment-2/api/orders/routes"
+	"rocky.my.id/git/h8-assignment-2/routers"
 )
 
 // OrderModule defines the order module.

@@ -3,9 +3,9 @@ package order_controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"rockyprabowo/assignment-2/api/orders/requests"
-	"rockyprabowo/assignment-2/api/orders/responses"
-	"rockyprabowo/assignment-2/models"
+	"rocky.my.id/git/h8-assignment-2/api/orders/requests"
+	"rocky.my.id/git/h8-assignment-2/api/orders/responses"
+	"rocky.my.id/git/h8-assignment-2/models"
 )
 
 // Update godoc

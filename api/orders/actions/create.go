@@ -1,6 +1,6 @@
 package order_actions
 
-import . "rockyprabowo/assignment-2/models"
+import . "rocky.my.id/git/h8-assignment-2/models"
 
 // CreateOrder creates an order and write them into the database.
 func (actions OrderActions) CreateOrder(newOrder *Order) error {

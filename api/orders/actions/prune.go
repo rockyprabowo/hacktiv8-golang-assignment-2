@@ -1,6 +1,6 @@
 package order_actions
 
-import . "rockyprabowo/assignment-2/models"
+import . "rocky.my.id/git/h8-assignment-2/models"
 
 // Prune prunes the database.
 func (actions OrderActions) Prune() (int64, error) {

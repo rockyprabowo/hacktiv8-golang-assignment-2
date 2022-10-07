@@ -2,7 +2,7 @@ package order_actions
 
 import (
 	"gorm.io/gorm/clause"
-	. "rockyprabowo/assignment-2/models"
+	. "rocky.my.id/git/h8-assignment-2/models"
 )
 
 // OrderExists checks the existence of an order by its ID.

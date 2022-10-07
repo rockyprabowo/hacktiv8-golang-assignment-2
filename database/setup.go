@@ -5,7 +5,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
-	"rockyprabowo/assignment-2/models"
+	"rocky.my.id/git/h8-assignment-2/models"
 )
 
 // DSN returns the DSN of the database connection.

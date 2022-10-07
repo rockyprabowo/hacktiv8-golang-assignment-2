@@ -2,7 +2,7 @@ package order_routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"rockyprabowo/assignment-2/api/orders/controllers"
+	"rocky.my.id/git/h8-assignment-2/api/orders/controllers"
 )
 
 // OrderRoutes defines a concrete implementation of RouterContract related to order.

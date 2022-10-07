@@ -1,7 +1,7 @@
 package order_requests
 
 import (
-	. "rockyprabowo/assignment-2/models"
+	. "rocky.my.id/git/h8-assignment-2/models"
 )
 
 // ItemOnUpdate represents a request payload for an item tied to an order create request.

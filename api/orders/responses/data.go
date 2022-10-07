@@ -1,6 +1,6 @@
 package order_responses
 
-import . "rockyprabowo/assignment-2/models"
+import . "rocky.my.id/git/h8-assignment-2/models"
 
 // DataList is the list of order response payload.
 type DataList struct {

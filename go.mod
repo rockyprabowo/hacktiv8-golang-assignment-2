@@ -1,4 +1,4 @@
-module rockyprabowo/assignment-2
+module rocky.my.id/git/h8-assignment-2
 
 go 1.19
 

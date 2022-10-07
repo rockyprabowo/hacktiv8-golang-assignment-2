@@ -2,7 +2,7 @@ package slices
 
 import (
 	"golang.org/x/exp/constraints"
-	"rockyprabowo/assignment-2/helpers/set"
+	"rocky.my.id/git/h8-assignment-2/helpers/set"
 )
 
 // SliceLongShort

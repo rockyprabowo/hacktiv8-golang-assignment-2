@@ -1,6 +1,6 @@
 package order_actions
 
-import . "rockyprabowo/assignment-2/models"
+import . "rocky.my.id/git/h8-assignment-2/models"
 
 // DeleteOrder deletes an order with the given order.
 func (actions OrderActions) DeleteOrder(order *Order) (int64, error) {

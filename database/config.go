@@ -2,7 +2,7 @@ package database
 
 import (
 	"os"
-	. "rockyprabowo/assignment-2/helpers/options"
+	. "rocky.my.id/git/h8-assignment-2/helpers/options"
 )
 
 // DbConfigMap is an alias of a map[string]string.

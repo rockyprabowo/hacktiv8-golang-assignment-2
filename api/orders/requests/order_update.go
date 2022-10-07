@@ -1,8 +1,8 @@
 package order_requests
 
 import (
-	"rockyprabowo/assignment-2/helpers/slices"
-	. "rockyprabowo/assignment-2/models"
+	"rocky.my.id/git/h8-assignment-2/helpers/slices"
+	. "rocky.my.id/git/h8-assignment-2/models"
 )
 
 // OrderUpdate represents a request payload for order update.

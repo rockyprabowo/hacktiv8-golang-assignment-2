@@ -2,7 +2,7 @@ package order_actions
 
 import (
 	"gorm.io/gorm"
-	. "rockyprabowo/assignment-2/models"
+	. "rocky.my.id/git/h8-assignment-2/models"
 )
 
 // OrderActionsContract defines a contract for order related actions.

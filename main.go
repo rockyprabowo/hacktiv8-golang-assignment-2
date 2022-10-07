@@ -7,17 +7,17 @@ import (
 	"github.com/swaggo/gin-swagger"
 	"log"
 	"os"
-	"rockyprabowo/assignment-2/api/orders"
-	"rockyprabowo/assignment-2/database"
-	"rockyprabowo/assignment-2/docs"
-	"rockyprabowo/assignment-2/helpers/options"
-	"rockyprabowo/assignment-2/routers"
+	"rocky.my.id/git/h8-assignment-2/api/orders"
+	"rocky.my.id/git/h8-assignment-2/database"
+	"rocky.my.id/git/h8-assignment-2/docs"
+	"rocky.my.id/git/h8-assignment-2/helpers/options"
+	"rocky.my.id/git/h8-assignment-2/routers"
 )
 
 // @title       Hacktiv8 Golang Assignment 2 - Orders
 // @version     1.0
 // @description This is a REST API for a custom shop ordering system.
-
+//
 // @contact.name  API Support
 // @contact.url   https://rocky.my.id/
 // @contact.email rocky@lazycats.id
