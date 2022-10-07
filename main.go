@@ -24,7 +24,11 @@ import (
 func main() {
 	// Loads the environment variables from .env file
 	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println("WARN: Couldn't load .env file. Checking system environment variables.")
+		if err := CheckEnvVars(); err != nil {
+			log.Println(err.Error())
+			log.Fatal("Couldn't configure the application from every environment variables!")
+		}
 	}
 
 	// Setup server listen and serve address

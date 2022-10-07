@@ -15,6 +15,10 @@ func Config() DbConfigMap {
 			os.Getenv("DB_HOST"),
 			"localhost",
 		),
+		"port": Default(
+			os.Getenv("DB_PORT"),
+			"5432",
+		),
 		"user": Default(
 			os.Getenv("DB_USER"),
 			"postgres",
