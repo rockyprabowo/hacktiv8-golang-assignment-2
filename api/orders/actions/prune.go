@@ -2,6 +2,7 @@ package order_actions
 
 import . "rockyprabowo/assignment-2/models"
 
+// Prune prunes the database.
 func (actions OrderActions) Prune() (int64, error) {
 	var (
 		affectedRows int64

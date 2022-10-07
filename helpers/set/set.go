@@ -8,8 +8,6 @@ package set
 //
 // The Set type is generic, which means it can be used to create sets of any
 // comparable type.
-//
-// @property sets - This is a map of type T to an empty struct.
 type Set[T comparable] struct {
 	sets map[T]struct{}
 }

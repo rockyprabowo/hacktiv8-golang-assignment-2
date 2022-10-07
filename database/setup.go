@@ -2,15 +2,14 @@ package database
 
 import (
 	"fmt"
-	"rockyprabowo/assignment-2/models"
-
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"log"
+	"rockyprabowo/assignment-2/models"
 )
 
-type DbConfigMap map[string]string
-
-func Dsn() string {
+// DSN returns the DSN of the database connection.
+func DSN() string {
 	config := Config()
 	return fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s sslmode=%s",
@@ -22,17 +21,18 @@ func Dsn() string {
 	)
 }
 
+// Init initialise the database connection.
 func Init() (db *gorm.DB) {
 	var err error
-	dsn := Dsn()
+	dsn := DSN()
 	db, err = gorm.Open(postgres.Open(dsn))
 	if err != nil {
-		panic("Failed to connect to database!")
+		log.Fatal("Failed to connect to database!")
 	}
 
 	err = db.AutoMigrate(&models.Item{}, &models.Order{})
 	if err != nil {
-		panic("Migration failed: " + err.Error())
+		log.Fatal("Migration failed: " + err.Error())
 	}
 
 	return
