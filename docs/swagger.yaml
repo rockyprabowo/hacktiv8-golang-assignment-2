@@ -1,0 +1,256 @@
+definitions:
+  models.Item:
+    properties:
+      description:
+        type: string
+      itemCode:
+        type: string
+      lineItemId:
+        type: integer
+      quantity:
+        type: integer
+    type: object
+  models.Order:
+    properties:
+      customerName:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/models.Item'
+        type: array
+      orderId:
+        type: integer
+      orderedAt:
+        type: string
+    type: object
+  order_requests.ItemOnCreate:
+    properties:
+      description:
+        type: string
+      itemCode:
+        type: string
+      quantity:
+        type: integer
+    required:
+    - description
+    - itemCode
+    - quantity
+    type: object
+  order_requests.ItemOnUpdate:
+    properties:
+      description:
+        type: string
+      itemCode:
+        type: string
+      lineItemId:
+        type: integer
+      quantity:
+        type: integer
+    required:
+    - description
+    - itemCode
+    - quantity
+    type: object
+  order_requests.OrderCreate:
+    properties:
+      customerName:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/order_requests.ItemOnCreate'
+        type: array
+    required:
+    - customerName
+    - items
+    type: object
+  order_requests.OrderUpdate:
+    properties:
+      customerName:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/order_requests.ItemOnUpdate'
+        type: array
+    required:
+    - customerName
+    - items
+    type: object
+  order_responses.Data:
+    properties:
+      data:
+        $ref: '#/definitions/models.Order'
+      message:
+        type: string
+    type: object
+  order_responses.DataList:
+    properties:
+      count:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/models.Order'
+        type: array
+      message:
+        type: string
+    type: object
+  order_responses.Error:
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+  order_responses.RowsAffected:
+    properties:
+      count:
+        type: integer
+      message:
+        type: string
+    type: object
+info:
+  contact:
+    email: rocky@lazycats.id
+    name: API Support
+    url: https://rocky.my.id/
+  description: This is a REST API for a custom shop ordering system.
+  title: Hacktiv8 Golang Assignment 2 - Orders
+  version: "1.0"
+paths:
+  /orders:
+    get:
+      description: Fetch all order(s) from the database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/order_responses.DataList'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+      summary: Fetch all orders
+      tags:
+      - orders
+    post:
+      consumes:
+      - application/json
+      description: Creates a new order and persists them to the database.
+      parameters:
+      - description: Create Order Request
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/order_requests.OrderCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/order_responses.Data'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+      summary: Create order
+      tags:
+      - orders
+  /orders/{id}:
+    delete:
+      description: Deletes an order with the given ID from the database.
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/order_responses.RowsAffected'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+      summary: Delete order
+      tags:
+      - orders
+    get:
+      description: Fetch an order by its ID from the database.
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/order_responses.Data'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+      summary: Fetch single order
+      tags:
+      - orders
+    put:
+      consumes:
+      - application/json
+      description: Updates an order with the given ID and payload on the database.
+      parameters:
+      - description: Order ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update Order Payload
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/order_requests.OrderUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/order_responses.Data'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/order_responses.Error'
+      summary: Update order
+      tags:
+      - orders
+swagger: "2.0"
