@@ -9,6 +9,7 @@ func requiredEnvVars() []string {
 	return []string{
 		"APP_HOST",
 		"APP_PORT",
+		"APP_STATIC_URL",
 		"DB_HOST",
 		"DB_PORT",
 		"DB_USER",

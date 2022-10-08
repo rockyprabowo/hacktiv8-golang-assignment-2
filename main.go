@@ -35,7 +35,7 @@ func main() {
 	serveAddress := setupServerAddr()
 
 	// Swagger documentations runtime values
-	docs.SwaggerInfo.Host = serveAddress
+	docs.SwaggerInfo.Host = options.Default(os.Getenv("APP_STATIC_URL"), serveAddress)
 	docs.SwaggerInfo.BasePath = "/"
 
 	// Setup router and initialise database connection
