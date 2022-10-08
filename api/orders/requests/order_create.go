@@ -8,7 +8,7 @@ import (
 // OrderCreate represents a request payload for order creation.
 type OrderCreate struct {
 	CustomerName string         `form:"customerName" json:"customerName" binding:"required"`
-	Items        []ItemOnCreate `form:"items" json:"items" binding:"required"`
+	Items        []ItemOnCreate `form:"items" json:"items" binding:"required,dive"`
 }
 
 // BindToModel binds the request to the actual data model.

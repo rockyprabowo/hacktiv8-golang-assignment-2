@@ -18,7 +18,7 @@ func ItemOnCreateMapper(item ItemOnCreate) (boundItem Item) {
 }
 
 // BindToModel binds the request to the actual data model.
-func (from ItemOnCreate) BindToModel(to *Item) {
+func (from *ItemOnCreate) BindToModel(to *Item) {
 	to.ItemCode = from.ItemCode
 	to.Description = from.Description
 	to.Quantity = from.Quantity

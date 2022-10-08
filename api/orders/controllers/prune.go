@@ -3,7 +3,7 @@ package order_controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"rocky.my.id/git/h8-assignment-2/api/orders/responses"
+	"rocky.my.id/git/h8-assignment-2/http/responses"
 )
 
 func (controller OrderController) Prune(context *gin.Context) {
@@ -11,7 +11,7 @@ func (controller OrderController) Prune(context *gin.Context) {
 	if err != nil {
 		context.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			order_responses.Error{
+			responses.Error{
 				Message: "Prune failed.",
 				Status:  "error",
 			},
@@ -20,7 +20,7 @@ func (controller OrderController) Prune(context *gin.Context) {
 	}
 	context.JSON(
 		http.StatusOK,
-		order_responses.RowsAffected{
+		responses.WithRowsAffected{
 			Count:   int(count),
 			Message: "Prune complete.",
 		},

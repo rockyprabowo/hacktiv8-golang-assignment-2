@@ -1,4 +1,4 @@
-package order_responses
+package responses
 
 // Error is the default error response payload.
 type Error struct {

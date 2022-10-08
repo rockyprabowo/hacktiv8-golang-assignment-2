@@ -34,13 +34,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.DataList"
+                            "$ref": "#/definitions/responses.WithDataList-models_Order"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     }
                 }
@@ -72,19 +72,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Data"
+                            "$ref": "#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     }
                 }
@@ -113,19 +113,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Data"
+                            "$ref": "#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     }
                 }
@@ -164,25 +164,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Data"
+                            "$ref": "#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     }
                 }
@@ -209,19 +209,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.RowsAffected"
+                            "$ref": "#/definitions/responses.WithRowsAffected"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/order_responses.Error"
+                            "$ref": "#/definitions/responses.Error"
                         }
                     }
                 }
@@ -343,18 +343,18 @@ const docTemplate = `{
                 }
             }
         },
-        "order_responses.Data": {
+        "responses.Error": {
             "type": "object",
             "properties": {
-                "data": {
-                    "$ref": "#/definitions/models.Order"
-                },
                 "message": {
+                    "type": "string"
+                },
+                "status": {
                     "type": "string"
                 }
             }
         },
-        "order_responses.DataList": {
+        "responses.WithDataList-models_Order": {
             "type": "object",
             "properties": {
                 "count": {
@@ -371,22 +371,22 @@ const docTemplate = `{
                 }
             }
         },
-        "order_responses.Error": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                }
-            }
-        },
-        "order_responses.RowsAffected": {
+        "responses.WithRowsAffected": {
             "type": "object",
             "properties": {
                 "count": {
                     "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/models.Order"
                 },
                 "message": {
                     "type": "string"

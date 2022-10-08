@@ -24,7 +24,7 @@ go.work
 api.http
 
 # Project's binary from go build
-assignment-2
+h8-assignment-2
 
 # .env file
 .env

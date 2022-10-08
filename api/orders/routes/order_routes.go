@@ -9,19 +9,21 @@ import (
 type OrderRoutes struct {
 	Engine  *gin.Engine
 	Handler order_controllers.OrderControllerContract
+	Prefix  string
 }
 
 // NewOrderRoutes instantiates an OrderRoutes.
 func NewOrderRoutes(
 	engine *gin.Engine,
 	handler order_controllers.OrderControllerContract,
+	prefix string,
 ) *OrderRoutes {
-	return &OrderRoutes{Engine: engine, Handler: handler}
+	return &OrderRoutes{Engine: engine, Handler: handler, Prefix: prefix}
 }
 
 // Setup defines the routes and its handler related to order.
 func (r OrderRoutes) Setup() {
-	orderRoutes := r.Engine.Group("/orders")
+	orderRoutes := r.Engine.Group(r.Prefix)
 	{
 		orderRoutes.GET("", r.Handler.GetAll)
 		orderRoutes.POST("", r.Handler.Create)

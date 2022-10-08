@@ -21,7 +21,7 @@ type OrderModule struct {
 func SetupDefault(engine *gin.Engine, db *gorm.DB) {
 	orderActions := order_actions.NewOrderActions(db)
 	orderController := order_controllers.NewOrdersController(db, orderActions)
-	orderRoutes := order_routes.NewOrderRoutes(engine, orderController)
+	orderRoutes := order_routes.NewOrderRoutes(engine, orderController, "/orders")
 
 	module := OrderModule{
 		Routes:     orderRoutes,

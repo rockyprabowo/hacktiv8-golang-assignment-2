@@ -3,7 +3,7 @@ package order_controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"rocky.my.id/git/h8-assignment-2/api/orders/responses"
+	"rocky.my.id/git/h8-assignment-2/http/responses"
 	"rocky.my.id/git/h8-assignment-2/models"
 )
 
@@ -13,9 +13,9 @@ import (
 // @Tags        orders
 // @Produce     json
 // @Param       id  path     int true "Order ID"
-// @Success     200 {object} order_responses.Data
-// @Failure     404 {object} order_responses.Error
-// @Failure     500 {object} order_responses.Error
+// @Success     200 {object} responses.WithData[models.Order]
+// @Failure     404 {object} responses.Error
+// @Failure     500 {object} responses.Error
 // @Router      /orders/{id} [get]
 func (controller OrderController) GetById(context *gin.Context) {
 	var (
@@ -28,7 +28,7 @@ func (controller OrderController) GetById(context *gin.Context) {
 	if err != nil {
 		context.JSON(
 			http.StatusNotFound,
-			order_responses.Error{
+			responses.Error{
 				Message: err.Error(),
 				Status:  "error",
 			},
@@ -38,9 +38,9 @@ func (controller OrderController) GetById(context *gin.Context) {
 
 	context.JSON(
 		http.StatusOK,
-		order_responses.Data{
-			Data:    order,
-			Message: "found",
+		responses.WithData[models.Order]{
+			Data:   order,
+			Status: "found",
 		},
 	)
 }
