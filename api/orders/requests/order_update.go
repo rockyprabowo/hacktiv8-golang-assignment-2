@@ -5,10 +5,11 @@ import (
 	. "rocky.my.id/git/h8-assignment-2/models"
 )
 
-// OrderUpdate represents a request payload for order update.
+// OrderUpdate
+// @Description Represents a request payload for order update.
 type OrderUpdate struct {
-	CustomerName string         `form:"customerName" json:"customerName" binding:"required"`
-	Items        []ItemOnUpdate `form:"items" json:"items" binding:"required,dive"`
+	CustomerName string         `form:"customerName" json:"customerName" example:"Marvin"` // This is the customer name
+	Items        []ItemOnUpdate `form:"items" json:"items" binding:"required,dive"`        // This is the order items
 }
 
 // BindToModel binds the request to the actual data model.

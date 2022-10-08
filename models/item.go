@@ -1,11 +1,12 @@
 package models
 
-// Item represents an Item tied to an order.
+// Item
+// @Description Represents an item tied to an order.
 type Item struct {
-	ID          uint   `json:"lineItemId" gorm:"primaryKey;column:item_id"`
-	ItemCode    string `form:"itemCode" json:"itemCode"`
-	Description string `form:"description" json:"description"`
-	Quantity    uint   `form:"quantity" json:"quantity"`
+	ID          uint   `json:"lineItemId" gorm:"primaryKey;column:item_id"  example:"1"`
+	ItemCode    string `form:"itemCode" json:"itemCode" example:"STUFF-1"`
+	Description string `form:"description" json:"description" example:"A description"`
+	Quantity    uint   `form:"quantity" json:"quantity" example:"1337"`
 	OrderID     uint   `json:"-"`
 	Order       Order  `json:"-"`
 }

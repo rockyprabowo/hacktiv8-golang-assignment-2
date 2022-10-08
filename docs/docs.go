@@ -230,27 +230,34 @@ const docTemplate = `{
     },
     "definitions": {
         "models.Item": {
+            "description": "Represents an item tied to an order.",
             "type": "object",
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "A description"
                 },
                 "itemCode": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "STUFF-1"
                 },
                 "lineItemId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "quantity": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1337
                 }
             }
         },
         "models.Order": {
+            "description": "Represent an order of a customer with the order date and one or more item(s).",
             "type": "object",
             "properties": {
                 "customerName": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Marvin"
                 },
                 "items": {
                     "type": "array",
@@ -259,14 +266,17 @@ const docTemplate = `{
                     }
                 },
                 "orderId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "orderedAt": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2022-02-22T20:00:00.0000000+00:00"
                 }
             }
         },
         "order_requests.ItemOnCreate": {
+            "description": "Represents a request payload for an item tied to an order create request.",
             "type": "object",
             "required": [
                 "description",
@@ -275,17 +285,24 @@ const docTemplate = `{
             ],
             "properties": {
                 "description": {
-                    "type": "string"
+                    "description": "This is the item description",
+                    "type": "string",
+                    "example": "A description"
                 },
                 "itemCode": {
-                    "type": "string"
+                    "description": "This is the item code",
+                    "type": "string",
+                    "example": "STUFF-1"
                 },
                 "quantity": {
-                    "type": "integer"
+                    "description": "This is the item quantity",
+                    "type": "integer",
+                    "example": 10
                 }
             }
         },
         "order_requests.ItemOnUpdate": {
+            "description": "Represents a request payload for an item tied to an order create request.",
             "type": "object",
             "required": [
                 "description",
@@ -294,20 +311,29 @@ const docTemplate = `{
             ],
             "properties": {
                 "description": {
-                    "type": "string"
+                    "description": "This is the item description",
+                    "type": "string",
+                    "example": "A (new) description"
                 },
                 "itemCode": {
-                    "type": "string"
+                    "description": "This is the item code",
+                    "type": "string",
+                    "example": "STUFF-1"
                 },
                 "lineItemId": {
-                    "type": "integer"
+                    "description": "This is the item ID",
+                    "type": "integer",
+                    "example": 1
                 },
                 "quantity": {
-                    "type": "integer"
+                    "description": "This is the item quantity",
+                    "type": "integer",
+                    "example": 1337
                 }
             }
         },
         "order_requests.OrderCreate": {
+            "description": "Represents a request payload for order creation.",
             "type": "object",
             "required": [
                 "customerName",
@@ -315,9 +341,12 @@ const docTemplate = `{
             ],
             "properties": {
                 "customerName": {
-                    "type": "string"
+                    "description": "This is the customer name",
+                    "type": "string",
+                    "example": "Marvin"
                 },
                 "items": {
+                    "description": "This is the order items",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/order_requests.ItemOnCreate"
@@ -326,16 +355,19 @@ const docTemplate = `{
             }
         },
         "order_requests.OrderUpdate": {
+            "description": "Represents a request payload for order update.",
             "type": "object",
             "required": [
-                "customerName",
                 "items"
             ],
             "properties": {
                 "customerName": {
-                    "type": "string"
+                    "description": "This is the customer name",
+                    "type": "string",
+                    "example": "Marvin"
                 },
                 "items": {
+                    "description": "This is the order items",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/order_requests.ItemOnUpdate"
@@ -344,13 +376,16 @@ const docTemplate = `{
             }
         },
         "responses.Error": {
+            "description": "Represents the default error response payload.",
             "type": "object",
             "properties": {
                 "message": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "something is wrong"
                 },
                 "status": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "error"
                 }
             }
         },
@@ -358,7 +393,8 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "count": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "data": {
                     "type": "array",
@@ -367,18 +403,22 @@ const docTemplate = `{
                     }
                 },
                 "message": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "success"
                 }
             }
         },
         "responses.WithRowsAffected": {
+            "description": "Represents a response payload for any operations with affected row count from the database.",
             "type": "object",
             "properties": {
                 "count": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 13
                 },
                 "message": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "success"
                 }
             }
         },
@@ -389,7 +429,8 @@ const docTemplate = `{
                     "$ref": "#/definitions/models.Order"
                 },
                 "message": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "success"
                 }
             }
         }

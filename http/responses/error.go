@@ -1,7 +1,8 @@
 package responses
 
-// Error is the default error response payload.
+// Error
+// @Description Represents the default error response payload.
 type Error struct {
-	Status  string `json:"status"`
-	Message string `json:"message"`
+	Status  string `json:"status" example:"error"`
+	Message string `json:"message" example:"something is wrong"`
 }
