@@ -6,7 +6,7 @@ This project is a REST API back end application made with Gin HTTP web framework
 
 ## Usage
 
-* Copy `.env.example` to `.env` and edit `.env` with your database configurations and listen/serve address.
+* Define the application configuration first using `.env` file (see `.env.example`) or pass them through via system/environment variables.
 * Run with `go run .` or build the application first with `go build .` if you wish.
 * You're ready to go!
 
@@ -23,6 +23,9 @@ This project is a REST API back end application made with Gin HTTP web framework
 
 
 ## Changelog
+
+### 1.2
+* Enable deployment through services like Render or Railway.
 
 ### 1.1
 * Fix Swagger/OpenAPI 2.0 documentation page issues
