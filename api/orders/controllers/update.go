@@ -16,7 +16,7 @@ import (
 // @Produce     json
 // @Param       id    path     int                        true "Order ID"
 // @Param       order body     order_requests.OrderUpdate true "Update Order Payload"
-// @Success     200   {object} responses.WithData[models.Order]
+// @Success     200   {object} responses.WithSingleData[models.Order]
 // @Failure     400   {object} responses.Error
 // @Failure     404   {object} responses.Error
 // @Failure     500   {object} responses.Error
@@ -69,7 +69,7 @@ func (controller OrderController) Update(context *gin.Context) {
 
 	context.JSON(
 		http.StatusOK,
-		responses.WithData[models.Order]{
+		responses.WithSingleData[models.Order]{
 			Data:   order,
 			Status: "updated",
 		},

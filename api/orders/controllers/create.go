@@ -15,7 +15,7 @@ import (
 // @Accept      json
 // @Produce     json
 // @Param       order body     order_requests.OrderCreate true "Create Order Request"
-// @Success     200   {object} responses.WithData[models.Order]
+// @Success     200   {object} responses.WithSingleData[models.Order]
 // @Failure     400   {object} responses.Error
 // @Failure     500   {object} responses.Error
 // @Router      /orders [post]
@@ -51,7 +51,7 @@ func (controller OrderController) Create(context *gin.Context) {
 
 	context.JSON(
 		http.StatusOK,
-		responses.WithData[models.Order]{
+		responses.WithSingleData[models.Order]{
 			Data:   order,
 			Status: "created",
 		},

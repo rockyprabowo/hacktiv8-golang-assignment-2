@@ -7,8 +7,8 @@ type WithDataList[T any] struct {
 	Message string `json:"message"`
 }
 
-// WithData is the single item T response payload.
-type WithData[T any] struct {
+// WithSingleData is the single item T response payload.
+type WithSingleData[T any] struct {
 	Data   T      `json:"data"`
 	Status string `json:"message"`
 }

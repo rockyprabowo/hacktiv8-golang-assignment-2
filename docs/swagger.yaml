@@ -100,7 +100,7 @@ definitions:
       message:
         type: string
     type: object
-  rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order:
+  responses.WithSingleData-models_Order:
     properties:
       data:
         $ref: '#/definitions/models.Order'
@@ -150,7 +150,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order'
+            $ref: '#/definitions/responses.WithSingleData-models_Order'
         "400":
           description: Bad Request
           schema:
@@ -203,7 +203,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order'
+            $ref: '#/definitions/responses.WithSingleData-models_Order'
         "404":
           description: Not Found
           schema:
@@ -237,7 +237,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order'
+            $ref: '#/definitions/responses.WithSingleData-models_Order'
         "400":
           description: Bad Request
           schema:

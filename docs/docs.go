@@ -72,7 +72,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order"
+                            "$ref": "#/definitions/responses.WithSingleData-models_Order"
                         }
                     },
                     "400": {
@@ -113,7 +113,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order"
+                            "$ref": "#/definitions/responses.WithSingleData-models_Order"
                         }
                     },
                     "404": {
@@ -164,7 +164,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order"
+                            "$ref": "#/definitions/responses.WithSingleData-models_Order"
                         }
                     },
                     "400": {
@@ -382,7 +382,7 @@ const docTemplate = `{
                 }
             }
         },
-        "rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order": {
+        "responses.WithSingleData-models_Order": {
             "type": "object",
             "properties": {
                 "data": {

@@ -63,7 +63,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order"
+                            "$ref": "#/definitions/responses.WithSingleData-models_Order"
                         }
                     },
                     "400": {
@@ -104,7 +104,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order"
+                            "$ref": "#/definitions/responses.WithSingleData-models_Order"
                         }
                     },
                     "404": {
@@ -155,7 +155,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order"
+                            "$ref": "#/definitions/responses.WithSingleData-models_Order"
                         }
                     },
                     "400": {
@@ -373,7 +373,7 @@
                 }
             }
         },
-        "rocky.my.id_git_h8-assignment-2_http_responses.WithData-models_Order": {
+        "responses.WithSingleData-models_Order": {
             "type": "object",
             "properties": {
                 "data": {
