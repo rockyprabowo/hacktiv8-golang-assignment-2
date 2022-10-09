@@ -3,7 +3,7 @@ package order_controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"rocky.my.id/git/h8-assignment-2/api/orders/responses"
+	"rocky.my.id/git/h8-assignment-2/http/responses"
 )
 
 // Delete godoc
@@ -12,9 +12,9 @@ import (
 // @Tags        orders
 // @Produce     json
 // @Param       id  path     int true "Order ID"
-// @Success     200 {object} order_responses.RowsAffected
-// @Failure     404 {object} order_responses.Error
-// @Failure     500 {object} order_responses.Error
+// @Success     200 {object} responses.WithRowsAffected
+// @Failure     404 {object} responses.Error
+// @Failure     500 {object} responses.Error
 // @Router      /orders/{id} [delete]
 func (controller OrderController) Delete(context *gin.Context) {
 	var (
@@ -28,7 +28,7 @@ func (controller OrderController) Delete(context *gin.Context) {
 	if !exist || err != nil {
 		context.JSON(
 			http.StatusNotFound,
-			order_responses.Error{
+			responses.Error{
 				Message: err.Error(),
 				Status:  "error",
 			},
@@ -40,7 +40,7 @@ func (controller OrderController) Delete(context *gin.Context) {
 	if err != nil {
 		context.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			order_responses.Error{
+			responses.Error{
 				Message: err.Error(),
 				Status:  "error",
 			},
@@ -50,7 +50,7 @@ func (controller OrderController) Delete(context *gin.Context) {
 
 	context.JSON(
 		http.StatusOK,
-		order_responses.RowsAffected{
+		responses.WithRowsAffected{
 			Count:   int(deleted),
 			Message: "deleted",
 		},

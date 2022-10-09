@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"github.com/joho/godotenv"
+	"github.com/gin-gonic/gin"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 	"log"
+	"net/http"
 	"os"
 	"rocky.my.id/git/h8-assignment-2/api/orders"
 	"rocky.my.id/git/h8-assignment-2/database"
@@ -22,15 +22,6 @@ import (
 // @contact.url   https://rocky.my.id/
 // @contact.email rocky@lazycats.id
 func main() {
-	// Loads the environment variables from .env file
-	if err := godotenv.Load(); err != nil {
-		log.Println("WARN: Couldn't load .env file. Checking system environment variables.")
-		if err := CheckEnvVars(); err != nil {
-			log.Println(err.Error())
-			log.Fatal("Couldn't configure the application from every environment variables!")
-		}
-	}
-
 	// Setup server listen and serve address
 	serveAddress := setupServerAddr()
 
@@ -38,14 +29,23 @@ func main() {
 	docs.SwaggerInfo.Host = options.Default(os.Getenv("APP_STATIC_URL"), serveAddress)
 	docs.SwaggerInfo.BasePath = "/"
 
-	// Setup router and initialise database connection
+	// Setup Gin router
+	setupGinLogging()
 	router := routers.NewDefaultRouter()
+
+	// Initialise database connection
 	db := database.Init()
 
 	// Load Order module
 	order_module.SetupDefault(router, db)
 
 	// Swagger documentations route setup
+	router.GET("/", func(c *gin.Context) {
+		c.Redirect(http.StatusMovedPermanently, "/swagger/index.html")
+	})
+	router.GET("/swagger", func(c *gin.Context) {
+		c.Redirect(http.StatusMovedPermanently, "/swagger/index.html")
+	})
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// Run the server
@@ -53,11 +53,4 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-}
-
-// setupServerAddr builds the address for Gin to listen and serve the application to.
-func setupServerAddr() string {
-	host := options.Default(os.Getenv("APP_HOST"), "localhost")
-	port := options.Default(os.Getenv("APP_PORT"), "5001")
-	return fmt.Sprintf("%s:%s", host, port)
 }

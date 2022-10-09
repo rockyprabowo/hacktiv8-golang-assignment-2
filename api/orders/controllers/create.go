@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"rocky.my.id/git/h8-assignment-2/api/orders/requests"
-	"rocky.my.id/git/h8-assignment-2/api/orders/responses"
+	"rocky.my.id/git/h8-assignment-2/http/responses"
 	"rocky.my.id/git/h8-assignment-2/models"
 )
 
@@ -15,9 +15,9 @@ import (
 // @Accept      json
 // @Produce     json
 // @Param       order body     order_requests.OrderCreate true "Create Order Request"
-// @Success     200   {object} order_responses.Data
-// @Failure     400   {object} order_responses.Error
-// @Failure     500   {object} order_responses.Error
+// @Success     200   {object} responses.WithSingleData[models.Order]
+// @Failure     400   {object} responses.Error
+// @Failure     500   {object} responses.Error
 // @Router      /orders [post]
 func (controller OrderController) Create(context *gin.Context) {
 	var (
@@ -28,7 +28,7 @@ func (controller OrderController) Create(context *gin.Context) {
 	if err := context.ShouldBind(&createPayload); err != nil {
 		context.JSON(
 			http.StatusBadRequest,
-			order_responses.Error{
+			responses.Error{
 				Message: err.Error(),
 				Status:  "error",
 			},
@@ -41,7 +41,7 @@ func (controller OrderController) Create(context *gin.Context) {
 	if err = controller.Actions.CreateOrder(&order); err != nil {
 		context.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			order_responses.Error{
+			responses.Error{
 				Message: err.Error(),
 				Status:  "error",
 			},
@@ -51,9 +51,9 @@ func (controller OrderController) Create(context *gin.Context) {
 
 	context.JSON(
 		http.StatusOK,
-		order_responses.Data{
-			Data:    order,
-			Message: "created",
+		responses.WithSingleData[models.Order]{
+			Data:   order,
+			Status: "created",
 		},
 	)
 }

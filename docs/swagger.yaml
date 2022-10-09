@@ -1,50 +1,78 @@
 definitions:
   models.Item:
+    description: Represents an item tied to an order.
     properties:
       description:
+        example: A description
         type: string
       itemCode:
+        example: STUFF-1
         type: string
       lineItemId:
+        example: 1
         type: integer
       quantity:
+        example: 1337
         type: integer
     type: object
   models.Order:
+    description: Represent an order of a customer with the order date and one or more
+      item(s).
     properties:
       customerName:
+        example: Marvin
         type: string
       items:
         items:
           $ref: '#/definitions/models.Item'
         type: array
       orderId:
+        example: 1
         type: integer
       orderedAt:
+        example: "2022-02-22T20:00:00.0000000+00:00"
         type: string
     type: object
-  order_requests.ItemOnCreate:
+  order_requests.ItemCreate:
+    description: Represents a request payload for an item tied to an order create
+      request.
     properties:
       description:
+        description: This is the item description
+        example: A description
         type: string
       itemCode:
+        description: This is the item code
+        example: STUFF-1
         type: string
       quantity:
+        description: This is the item quantity
+        example: 10
         type: integer
     required:
     - description
     - itemCode
     - quantity
     type: object
-  order_requests.ItemOnUpdate:
+  order_requests.ItemUpdate:
+    description: Represents a request payload for an item tied to an order create
+      request.
     properties:
       description:
+        description: This is the item description
+        example: A (new) description
         type: string
       itemCode:
+        description: This is the item code
+        example: STUFF-1
         type: string
       lineItemId:
+        description: This is the item ID
+        example: 1
         type: integer
       quantity:
+        description: This is the item quantity
+        example: 1337
         type: integer
     required:
     - description
@@ -52,59 +80,76 @@ definitions:
     - quantity
     type: object
   order_requests.OrderCreate:
+    description: Represents a request payload for order creation.
     properties:
       customerName:
+        description: This is the customer name
+        example: Marvin
         type: string
       items:
+        description: This is the order items
         items:
-          $ref: '#/definitions/order_requests.ItemOnCreate'
+          $ref: '#/definitions/order_requests.ItemCreate'
         type: array
     required:
     - customerName
     - items
     type: object
   order_requests.OrderUpdate:
+    description: Represents a request payload for order update.
     properties:
       customerName:
+        description: This is the customer name
+        example: Marvin
         type: string
       items:
+        description: This is the order items
         items:
-          $ref: '#/definitions/order_requests.ItemOnUpdate'
+          $ref: '#/definitions/order_requests.ItemUpdate'
         type: array
     required:
-    - customerName
     - items
     type: object
-  order_responses.Data:
+  responses.Error:
+    description: Represents the default error response payload.
     properties:
-      data:
-        $ref: '#/definitions/models.Order'
       message:
+        example: something is wrong
+        type: string
+      status:
+        example: error
         type: string
     type: object
-  order_responses.DataList:
+  responses.WithDataList-models_Order:
     properties:
       count:
+        example: 1
         type: integer
       data:
         items:
           $ref: '#/definitions/models.Order'
         type: array
       message:
+        example: success
         type: string
     type: object
-  order_responses.Error:
-    properties:
-      message:
-        type: string
-      status:
-        type: string
-    type: object
-  order_responses.RowsAffected:
+  responses.WithRowsAffected:
+    description: Represents a response payload for any operations with affected row
+      count from the database.
     properties:
       count:
+        example: 13
         type: integer
       message:
+        example: success
+        type: string
+    type: object
+  responses.WithSingleData-models_Order:
+    properties:
+      data:
+        $ref: '#/definitions/models.Order'
+      message:
+        example: success
         type: string
     type: object
 info:
@@ -125,11 +170,11 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/order_responses.DataList'
+            $ref: '#/definitions/responses.WithDataList-models_Order'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
       summary: Fetch all orders
       tags:
       - orders
@@ -150,15 +195,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/order_responses.Data'
+            $ref: '#/definitions/responses.WithSingleData-models_Order'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
       summary: Create order
       tags:
       - orders
@@ -177,15 +222,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/order_responses.RowsAffected'
+            $ref: '#/definitions/responses.WithRowsAffected'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
       summary: Delete order
       tags:
       - orders
@@ -203,15 +248,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/order_responses.Data'
+            $ref: '#/definitions/responses.WithSingleData-models_Order'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
       summary: Fetch single order
       tags:
       - orders
@@ -237,19 +282,19 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/order_responses.Data'
+            $ref: '#/definitions/responses.WithSingleData-models_Order'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/order_responses.Error'
+            $ref: '#/definitions/responses.Error'
       summary: Update order
       tags:
       - orders

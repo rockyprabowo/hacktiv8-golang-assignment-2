@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"rocky.my.id/git/h8-assignment-2/api/orders/requests"
-	"rocky.my.id/git/h8-assignment-2/api/orders/responses"
+	"rocky.my.id/git/h8-assignment-2/http/responses"
 	"rocky.my.id/git/h8-assignment-2/models"
 )
 
@@ -16,10 +16,10 @@ import (
 // @Produce     json
 // @Param       id    path     int                        true "Order ID"
 // @Param       order body     order_requests.OrderUpdate true "Update Order Payload"
-// @Success     200   {object} order_responses.Data
-// @Failure     400   {object} order_responses.Error
-// @Failure     404   {object} order_responses.Error
-// @Failure     500   {object} order_responses.Error
+// @Success     200   {object} responses.WithSingleData[models.Order]
+// @Failure     400   {object} responses.Error
+// @Failure     404   {object} responses.Error
+// @Failure     500   {object} responses.Error
 // @Router      /orders/{id} [put]
 func (controller OrderController) Update(context *gin.Context) {
 	var (
@@ -33,7 +33,7 @@ func (controller OrderController) Update(context *gin.Context) {
 	if err := context.ShouldBind(&updatePayload); err != nil {
 		context.JSON(
 			http.StatusBadRequest,
-			order_responses.Error{
+			responses.Error{
 				Message: err.Error(),
 				Status:  "error",
 			},
@@ -47,7 +47,7 @@ func (controller OrderController) Update(context *gin.Context) {
 	if err != nil {
 		context.JSON(
 			http.StatusNotFound,
-			order_responses.Error{
+			responses.Error{
 				Message: err.Error(),
 				Status:  "error",
 			},
@@ -59,7 +59,7 @@ func (controller OrderController) Update(context *gin.Context) {
 	if err != nil {
 		context.AbortWithStatusJSON(
 			http.StatusInternalServerError,
-			order_responses.Error{
+			responses.Error{
 				Message: err.Error(),
 				Status:  "error",
 			},
@@ -69,9 +69,9 @@ func (controller OrderController) Update(context *gin.Context) {
 
 	context.JSON(
 		http.StatusOK,
-		order_responses.Data{
-			Data:    order,
-			Message: "updated",
+		responses.WithSingleData[models.Order]{
+			Data:   order,
+			Status: "updated",
 		},
 	)
 }

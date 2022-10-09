@@ -15,7 +15,7 @@ func (actions OrderActions) UpdateOrder(order, updatePayload *Order) error {
 	err := actions.
 		Database.
 		Session(&gorm.Session{FullSaveAssociations: true}).
-		Save(order).
+		Updates(order).
 		Error
 	if err != nil {
 		return err
