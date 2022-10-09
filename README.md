@@ -24,6 +24,11 @@ This project is a REST API back end application made with Gin HTTP web framework
 
 ## Changelog
 
+### 2.0
+* Initial Docker support
+* Introduce a new way to configure the database connection: `DB_URL` environment variables
+* Under the hood improvements
+
 ### 1.2
 * Enable deployment through services like Render or Railway.
 
