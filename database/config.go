@@ -53,7 +53,7 @@ func parseFromEnvVars() DbConfigMap {
 	}
 }
 
-// parseDatabaseURL returns a database configuration from a database URL defined in DB_URL environment variable.
+// parseDatabaseURL returns a database configuration from the database URL defined in DB_URL environment variable.
 func parseDatabaseURL(databaseURL string) (config DbConfigMap, err error) {
 	var parsedURL *url.URL
 	var host, port, username string

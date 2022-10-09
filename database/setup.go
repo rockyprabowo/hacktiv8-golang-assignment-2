@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// buildDSN builds the DSN string from a database configuration.
 func buildDSN(config DbConfigMap) (string, error) {
 	var sb strings.Builder
 

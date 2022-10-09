@@ -33,7 +33,7 @@ definitions:
         example: "2022-02-22T20:00:00.0000000+00:00"
         type: string
     type: object
-  order_requests.ItemOnCreate:
+  order_requests.ItemCreate:
     description: Represents a request payload for an item tied to an order create
       request.
     properties:
@@ -54,7 +54,7 @@ definitions:
     - itemCode
     - quantity
     type: object
-  order_requests.ItemOnUpdate:
+  order_requests.ItemUpdate:
     description: Represents a request payload for an item tied to an order create
       request.
     properties:
@@ -89,7 +89,7 @@ definitions:
       items:
         description: This is the order items
         items:
-          $ref: '#/definitions/order_requests.ItemOnCreate'
+          $ref: '#/definitions/order_requests.ItemCreate'
         type: array
     required:
     - customerName
@@ -105,7 +105,7 @@ definitions:
       items:
         description: This is the order items
         items:
-          $ref: '#/definitions/order_requests.ItemOnUpdate'
+          $ref: '#/definitions/order_requests.ItemUpdate'
         type: array
     required:
     - items

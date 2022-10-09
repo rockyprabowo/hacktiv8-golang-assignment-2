@@ -275,7 +275,7 @@ const docTemplate = `{
                 }
             }
         },
-        "order_requests.ItemOnCreate": {
+        "order_requests.ItemCreate": {
             "description": "Represents a request payload for an item tied to an order create request.",
             "type": "object",
             "required": [
@@ -301,7 +301,7 @@ const docTemplate = `{
                 }
             }
         },
-        "order_requests.ItemOnUpdate": {
+        "order_requests.ItemUpdate": {
             "description": "Represents a request payload for an item tied to an order create request.",
             "type": "object",
             "required": [
@@ -349,7 +349,7 @@ const docTemplate = `{
                     "description": "This is the order items",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/order_requests.ItemOnCreate"
+                        "$ref": "#/definitions/order_requests.ItemCreate"
                     }
                 }
             }
@@ -370,7 +370,7 @@ const docTemplate = `{
                     "description": "This is the order items",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/order_requests.ItemOnUpdate"
+                        "$ref": "#/definitions/order_requests.ItemUpdate"
                     }
                 }
             }
