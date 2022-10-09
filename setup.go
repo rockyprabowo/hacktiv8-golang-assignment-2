@@ -42,8 +42,8 @@ func init() {
 	setupGeneralLogging()
 
 	// Check mandatory environment variables used for configurations
-	if err := CheckEnvVars(); err != nil {
-		debugging.Print(err.Error(), "CheckEnvVars")
+	if err := checkEnvVars(); err != nil {
+		debugging.Print(err.Error(), "checkEnvVars")
 		log.Fatal("Couldn't load mandatory configuration environment variables!")
 	}
 	debugging.Print("Mandatory configuration environment variables are available.", "init")
@@ -107,8 +107,8 @@ func requiredEnvVars() []string {
 	return vars
 }
 
-// CheckEnvVars checks every mandatory environment variables used for configurations
-func CheckEnvVars() error {
+// checkEnvVars checks every mandatory environment variables used for configurations
+func checkEnvVars() error {
 	var undefinedEnvVars []string
 	for _, v := range requiredEnvVars() {
 		if _, present := os.LookupEnv(v); !present {
