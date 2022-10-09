@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "embed"
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -13,16 +14,8 @@ import (
 	"strings"
 )
 
-const logo string = "" +
-	"                _               ____\n" +
-	"               | |             |  _ \\  \n" +
-	"   ___  _ __ __| | ___ _ __ ___| |_) |_   _\n" +
-	"  / _ \\| '__/ _` |/ _ \\ '__/ __|  _ <| | | |\n" +
-	" | (_) | | | (_| |  __/ |  \\__ \\ |_) | |_| |\n" +
-	"  \\___/|_|  \\__,_|\\___|_|  |___/____/ \\__, |\n" +
-	"                                       __/ |\n" +
-	"                                      |___/\n" +
-	"by Rocky Prabowo (149368582101-196)"
+//go:embed ascii.txt
+var logo string
 
 type _AppState struct {
 	Debug       bool
