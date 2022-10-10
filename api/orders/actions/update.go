@@ -3,6 +3,7 @@ package order_actions
 import (
 	"gorm.io/gorm"
 	"rocky.my.id/git/h8-assignment-2/helpers/options"
+	"rocky.my.id/git/h8-assignment-2/helpers/set"
 	"rocky.my.id/git/h8-assignment-2/helpers/slices"
 	. "rocky.my.id/git/h8-assignment-2/models"
 )
@@ -10,10 +11,11 @@ import (
 func vetOrderItems(original []Item, update []Item) (upsert []Item, deleted []uint) {
 	originalOrderItemIDs := slices.Map(original, ItemMapID)
 	updateOrderItemIDs := slices.Map(update, ItemMapID)
-
 	updatableIDs := slices.Intersect(originalOrderItemIDs, updateOrderItemIDs)
+	updatableIDSet := set.NewSetFromSlice[uint](updatableIDs)
+
 	upsert = slices.Filter(update, func(i Item) bool {
-		return slices.Contains(updatableIDs, i.ID) || i.ID == 0
+		return updatableIDSet.Has(i.ID) || i.ID == 0
 	})
 	deleted = slices.Diff(originalOrderItemIDs, updatableIDs)
 

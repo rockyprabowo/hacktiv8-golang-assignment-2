@@ -23,9 +23,23 @@ func (s *Set[T]) Add(v T) {
 	s.sets[v] = struct{}{}
 }
 
+// AddMany adds many new element to the set.
+func (s *Set[T]) AddMany(v ...T) {
+	for _, value := range v {
+		s.sets[value] = struct{}{}
+	}
+}
+
 // Remove removes a value from the set.
 func (s *Set[T]) Remove(v T) {
 	delete(s.sets, v)
+}
+
+// RemoveMany removes many value from the set.
+func (s *Set[T]) RemoveMany(v ...T) {
+	for _, value := range v {
+		delete(s.sets, value)
+	}
 }
 
 // Clear clears the set.
@@ -42,5 +56,13 @@ func (s *Set[T]) Size() int {
 func NewSet[T comparable]() *Set[T] {
 	s := &Set[T]{}
 	s.sets = make(map[T]struct{})
+	return s
+}
+
+// NewSetFromSlice creates a new set of type T
+func NewSetFromSlice[T comparable](slice []T) *Set[T] {
+	s := &Set[T]{}
+	s.sets = make(map[T]struct{})
+	s.AddMany(slice...)
 	return s
 }
