@@ -14,7 +14,7 @@ func (actions OrderActions) Prune() (int64, error) {
 		pruneQuery := actions.Database.Where("1 = 1").Delete(model)
 
 		if err := pruneQuery.Error; err != nil {
-			return 0, err
+			return affectedRows, err
 		}
 		affectedRows += pruneQuery.RowsAffected
 	}

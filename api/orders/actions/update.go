@@ -15,7 +15,8 @@ func vetOrderItems(original []Item, update []Item) (upsert []Item, deleted []uin
 	updatableIDSet := set.NewSetFromSlice[uint](updatableIDs)
 
 	upsert = slices.Filter(update, func(i Item) bool {
-		return updatableIDSet.Has(i.ID) || i.ID == 0
+		var zero uint
+		return updatableIDSet.Has(i.ID) || i.ID == zero
 	})
 	deleted = slices.Diff(originalOrderItemIDs, updatableIDs)
 

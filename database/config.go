@@ -1,7 +1,6 @@
 package database
 
 import (
-	"errors"
 	"net"
 	"net/url"
 	"os"
@@ -60,11 +59,14 @@ func parseDatabaseURL(databaseURL string) (config DbConfigMap, err error) {
 
 	parsedURL, err = url.Parse(databaseURL)
 	if err != nil {
-		err = errors.New(err.Error())
 		return
 	}
 
 	host, port, err = net.SplitHostPort(parsedURL.Host)
+	if err != nil {
+		return
+	}
+
 	username = parsedURL.User.Username()
 	password, hasPassword := parsedURL.User.Password()
 

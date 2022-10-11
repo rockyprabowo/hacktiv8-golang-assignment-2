@@ -11,6 +11,7 @@ import (
 	"os"
 	"rocky.my.id/git/h8-assignment-2/helpers/debugging"
 	"rocky.my.id/git/h8-assignment-2/helpers/options"
+	"rocky.my.id/git/h8-assignment-2/helpers/slices"
 	"strings"
 )
 
@@ -56,10 +57,20 @@ func setupServerAddr() string {
 	return fmt.Sprintf("%s:%s", host, port)
 }
 
+func parseEnvironment() string {
+	return options.Default(os.Getenv("APP_ENV"), "production")
+}
+
+// isDebugActive returns true if the APP_DEBUG contains a "true-ish" value. Returns false otherwise.
+func isDebugActive() bool {
+	debugVar, exist := os.LookupEnv("APP_DEBUG")
+	return exist && slices.Contains([]string{"true", "1", "on", "active"}, debugVar)
+}
+
 // setupEnvDebugMode reads and return environment and debug from environment variables
 func setupEnvDebugMode() (env string, debug bool) {
-	env = options.Default(os.Getenv("APP_ENV"), "production")
-	debug = options.Default(os.Getenv("APP_DEBUG"), "false") == "true"
+	env = parseEnvironment()
+	debug = isDebugActive()
 	return
 }
 
